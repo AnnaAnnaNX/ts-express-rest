@@ -1,0 +1,10 @@
+version: '3'
+services:
+  mongo:
+    image: mongo
+    volumes:
+      - type: bind
+        source: './data'
+        target: '/home/anna/Рабочий стол/portfolio/ts-express-rest/src/data/db'
+    ports:
+      - "27017:27017"

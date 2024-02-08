@@ -1,8 +1,8 @@
 import {CRUD} from '../common/interface/crud.interface'
-import {CreateUserDto} from "./create.user.dto";
+import {CreateUserDto} from "./dto/create.user.dto";
 import UsersDao from "./daos/users.dao";
-import {PutUserDto} from "./put.user.dto";
-import {PatchUserDto} from "./patch.user.dto";
+import {PutUserDto} from "./dto/put.user.dto";
+import {PatchUserDto} from "./dto/patch.user.dto";
 
 
 class UsersService implements CRUD {
@@ -10,10 +10,10 @@ class UsersService implements CRUD {
         return UsersDao.addUser(resource)
     }
     async list(limit: number, page: number) {
-        return UsersDao.getUsers()
+        return UsersDao.getUsers(limit, page)
     }
     async putById(id: string, resource: PutUserDto) {
-        return UsersDao.putUserById(id, resource)
+        return UsersDao.updateUserById(id, resource)
     }
     async readById(id: string) {
         return UsersDao.getUserById(id)
@@ -22,7 +22,7 @@ class UsersService implements CRUD {
         return UsersDao.removeUserById(id)
     }
     async patchById(id: string, resource: PatchUserDto) {
-        return UsersDao.patchUserById(id, resource)
+        return UsersDao.updateUserById(id, resource)
     }
     async getUserByEmail(email: string) {
         return UsersDao.getUserByEmail(email)
