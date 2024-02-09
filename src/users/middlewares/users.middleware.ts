@@ -46,6 +46,7 @@ class UsersMiddleware {
     async validateUserExists(req: express.Request, res: express.Response, next: express.NextFunction) {
         const user = await UsersService.readById(req.params.id)
         if (user) {
+            res.locals.user = user
             next()
         } else {
             res.status(400).send({
